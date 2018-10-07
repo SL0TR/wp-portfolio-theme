@@ -3,6 +3,12 @@
 add_theme_support('menus');
 add_theme_support('post-thumbnails');
 
+function wpt_excerpt_length($length) {
+  return 16;
+}
+
+add_filter('excerpt_length', 'wpt_excerpt_length', 999);
+
 function register_theme_menus() {
   register_nav_menus(
     array(
@@ -31,8 +37,7 @@ function wps_theme_js() {
   wp_enqueue_script('main_js', get_template_directory_uri() . '/js/app.js', array('jquery', 'foundation_js'), '', true);
 
 }
-
-
+ 
 add_action('wp_enqueue_scripts', 'wps_theme_js');
 
 ?>

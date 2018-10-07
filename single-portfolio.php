@@ -10,31 +10,28 @@
 <section class="two-column row no-max pad">
   <div class="small-12 columns">
     <div class="row">
+      <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
       <!-- Primary Column -->
       <div class="small-12 medium-7 medium-offset-1 medium-push-4 columns">
         <div class="primary">
-            
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-        <h1><?php the_title(); ?></h1>
+          <?php the_field('images'); ?>
 
-        <hr>
-      
-        <p><?php the_content(); ?></p> 
-
-        <?php endwhile;
-        else : ?>
-
-        <p><?php esc_html_e('Sorry, no pages found.'); ?></p>
-
-        <?php endif; ?>
         </div>
       </div>
       <div class="small-12 medium-4 medium-pull-8 columns">
         <div class="secondary">
-          <h2 class="module-heading">Sidebar</h2>
-        </div>
+          <h1><?php the_title(); ?></h1>
+          <p><?php  the_field('description'); ?></p>
+          <hr>
+          <p>
+            <?php previous_post_link(); ?> --
+            <a href="<?php bloginfo('url'); ?>/portfolio">Back To Portfolio</a>
+            -- <?php next_post_link(); ?>
+          </p>
+        </div> 
       </div>
+      <?php endwhile; endif; wp_reset_postdata();?>
     </div>
   </div>
 </section>
